@@ -36,7 +36,7 @@
             font-size: 22px;
         }
         
-        .deleteSpan {
+        .deleteSpan1 {
             position: absolute;
             width: 100px;
             height: 40px;
@@ -55,11 +55,9 @@
     <button id="myBtn">SAVE</button>
 
     <div id="myDiv">
+        <ul id="list"></ul>
 
 
-        <ul id="myUl">
-            <!----  <li class="myli"><span class="myBookSpan"></span><span class="myDltSpan">DELETE</span></li>-->
-        </ul>
     </div>
 
     <script>
@@ -67,7 +65,7 @@
         const myBtn = document.getElementById('myBtn');
         const myInput = document.getElementById('myInput').value;
         const myDiv = document.getElementById('myDiv');
-
+        //const list = document.getElementById('list');
         myBtn.addEventListener('click', (e) => {
             e.preventDefault();
             const myInput = document.getElementById('myInput').value;
@@ -75,11 +73,20 @@
             myDiv.innerHTML = "";
             myArr.forEach((a, n) => {
                 myDiv.innerHTML += `
-                <li>${n+1}<span class="bookListSpan">${a}</span><span class="deleteSpan">DELETE</span></li>`;
+                <li>${n+1}<span class="bookListSpan">${a}</span><span class="deleteSpan1">DELETE</span></li>`;
             });
             localStorage.setItem('bookListStore', JSON.stringify(myArr));
             JSON.parse(localStorage.getItem('bookListStore'));
-        })
+        });
+        var list = document.getElementById('list');
+        list.addEventListener('click', (t) => {
+            t.preventDefault();
+            var list = document.getElementById('list');
+            if (t.target.className == 'deleteSpan1') {
+                li = t.target.parentElement;
+                list.removeChild(li);
+            }
+        });
     </script>
 </body>
 
