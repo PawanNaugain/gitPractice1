@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIT PRACTICE BRANCH</title>
+    <style>
+        #myDiv {
+            position: relative;
+            width: 800px;
+            height: auto;
+            border: 1px solid rgb(20, 12, 44);
+        }
+        
+        input {
+            border: 2px solid rgb(41, 6, 6);
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        li {
+            width: 600px;
+            height: 40px;
+            background-color: pink;
+        }
+        
+        .bookListSpan {
+            position: absolute;
+            width: 400px;
+            height: 40px;
+            background-color: blueviolet;
+            text-align: center;
+            font-size: 22px;
+        }
+        
+        .deleteSpan {
+            position: absolute;
+            width: 100px;
+            height: 40px;
+            right: 220px;
+            text-align: center;
+            background-color: cyan;
+            font-size: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <h4>git practice html file branch:</h4>
+    <h4>local storage:</h4>
+    <input type="text" id="myInput" placeholder="book names">
+    <button id="myBtn">SAVE</button>
+
+    <div id="myDiv">
+
+
+        <ul id="myUl">
+            <!----  <li class="myli"><span class="myBookSpan"></span><span class="myDltSpan">DELETE</span></li>-->
+        </ul>
+    </div>
+
+    <script>
+        let myArr = [];
+        const myBtn = document.getElementById('myBtn');
+        const myInput = document.getElementById('myInput').value;
+        const myDiv = document.getElementById('myDiv');
+
+        myBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const myInput = document.getElementById('myInput').value;
+            myArr.push(myInput);
+            myDiv.innerHTML = "";
+            myArr.forEach((a, n) => {
+                myDiv.innerHTML += `
+                <li>${n+1}<span class="bookListSpan">${a}</span><span class="deleteSpan">DELETE</span></li>`;
+            });
+            localStorage.setItem('bookListStore', JSON.stringify(myArr));
+            JSON.parse(localStorage.getItem('bookListStore'));
+        })
+    </script>
+</body>
+
+</html>
