@@ -6,22 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GIT PRACTICE BRANCH</title>
     <style>
-        #myDiv {
+        /* #myDiv {
             position: relative;
             width: 800px;
             height: auto;
             border: 1px solid rgb(20, 12, 44);
-        }
+        }*/
         
         input {
             border: 2px solid rgb(41, 6, 6);
         }
         
-        ul {
-            list-style: none;
+        #cat1 {
+            width: 640px;
+            height: 800px;
+            border: 2px solid red;
+            display: block;
         }
         
         li {
+            position: relative;
             width: 600px;
             height: 40px;
             background-color: pink;
@@ -53,12 +57,9 @@
     <h4>local storage:</h4>
     <input type="text" id="myInput" placeholder="book names">
     <button id="myBtn">SAVE</button>
-
-    <div id="myDiv">
-        <ul id="list"></ul>
+    <ul id="cat1"></ul>
 
 
-    </div>
 
     <script>
         let myArr = [];
@@ -70,23 +71,23 @@
             e.preventDefault();
             const myInput = document.getElementById('myInput').value;
             myArr.push(myInput);
-            myDiv.innerHTML = "";
+            cat1.innerHTML = "";
             myArr.forEach((a, n) => {
-                myDiv.innerHTML += `
-                <li>${n+1}<span class="bookListSpan">${a}</span><span class="deleteSpan1">DELETE</span></li>`;
+                cat1.innerHTML += `
+                <li>${n+1}<span class="bookListSpan">${a}</span><span class="deleteSpan1">delete</span></li>`;
+
             });
             localStorage.setItem('bookListStore', JSON.stringify(myArr));
             JSON.parse(localStorage.getItem('bookListStore'));
         });
-        var list = document.getElementById('list');
-        list.addEventListener('click', (t) => {
-            t.preventDefault();
-            var list = document.getElementById('list');
-            if (t.target.className == 'deleteSpan1') {
-                li = t.target.parentElement;
-                list.removeChild(li);
+        var cat1 = document.getElementById('cat1');
+        cat1.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (e.target.className == 'deleteSpan1') {
+                li = e.target.parentElement;
+                cat1.removeChild(li);
             }
-        });
+        })
     </script>
 </body>
 
